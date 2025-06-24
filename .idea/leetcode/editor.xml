@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LeetcodeEditor">
+    <option name="projectConfig">
+      <map>
+        <entry key="/var/folders/r8/prk5pv1n14x178p2klk379980000gn/T/h/leetcode/editor/cn/[146]LRU 缓存.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="/var/folders/r8/prk5pv1n14x178p2klk379980000gn/T/h/leetcode/editor/cn/doc/content/[146]LRU 缓存.md" />
+              <option name="frontendQuestionId" value="leetcode.cn146" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="/var/folders/r8/prk5pv1n14x178p2klk379980000gn/T/h/leetcode/editor/cn/[146]LRU 缓存.go" />
+              <option name="titleSlug" value="lru-cache" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="/var/folders/r8/prk5pv1n14x178p2klk379980000gn/T/h/leetcode/editor/cn/[3037]在无限流中寻找模式 II.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="/var/folders/r8/prk5pv1n14x178p2klk379980000gn/T/h/leetcode/editor/cn/doc/content/[3037]在无限流中寻找模式 II.md" />
+              <option name="frontendQuestionId" value="leetcode.cn3037" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="/var/folders/r8/prk5pv1n14x178p2klk379980000gn/T/h/leetcode/editor/cn/[3037]在无限流中寻找模式 II.go" />
+              <option name="titleSlug" value="find-pattern-in-infinite-stream-ii" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
