@@ -44,9 +44,9 @@ func findKthLargest(nums []int, k int) int {
 func main() {
 	// 测试用例
 	testCases := []struct {
-		nums []int
-		k    int
-		want int
+		nums   []int
+		k      int
+		output int
 	}{
 		{[]int{3, 2, 1, 5, 6, 4}, 2, 5},              // 普通情况
 		{[]int{3, 2, 3, 1, 2, 4, 5, 5, 6}, 4, 4},     // 包含重复元素
@@ -54,18 +54,16 @@ func main() {
 		{[]int{1, 2, 3, 4, 5}, 1, 5},                 // 第1大
 		{[]int{1, 2, 3, 4, 5}, 5, 1},                 // 第5大
 		{[]int{5, 5, 5, 5, 5}, 3, 5},                 // 全相同元素
-		{[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 3, 8}, // 有序数组
-		{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, 3, 8}, // 逆序数组
-		{[]int{1, 1, 1, 2, 2, 3}, 2, 2},              // 重复元素
-		{[]int{1, 1, 1, 1, 1, 1}, 1, 1},              // 全相同
+		{[]int{-1, -2, -3, -4, -5}, 2, -2},           // 负数
+		{[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 3, 8}, // 较大数组
 	}
 
 	for _, tc := range testCases {
 		fmt.Printf("\n输入: nums = %v, k = %d\n", tc.nums, tc.k)
 		result := findKthLargest(tc.nums, tc.k)
 		fmt.Printf("输出: %d\n", result)
-		fmt.Printf("期望: %d\n", tc.want)
-		if result == tc.want {
+		fmt.Printf("期望: %d\n", tc.output)
+		if result == tc.output {
 			fmt.Println("✓ 通过")
 		} else {
 			fmt.Println("✗ 失败")
@@ -105,23 +103,13 @@ func main() {
 期望: 5
 ✓ 通过
 
+输入: nums = [-1 -2 -3 -4 -5], k = 2
+输出: -2
+期望: -2
+✓ 通过
+
 输入: nums = [1 2 3 4 5 6 7 8 9 10], k = 3
 输出: 8
 期望: 8
-✓ 通过
-
-输入: nums = [10 9 8 7 6 5 4 3 2 1], k = 3
-输出: 8
-期望: 8
-✓ 通过
-
-输入: nums = [1 1 1 2 2 3], k = 2
-输出: 2
-期望: 2
-✓ 通过
-
-输入: nums = [1 1 1 1 1 1], k = 1
-输出: 1
-期望: 1
 ✓ 通过
 */
