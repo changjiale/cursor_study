@@ -43,13 +43,110 @@
 
 ### 1.5 Sync包
 - **Mutex**：互斥锁的实现原理
+  - 数据结构：state字段（锁状态+等待者数量）
+  - 实现机制：自旋+阻塞的混合策略
+  - 性能优化：饥饿模式vs正常模式
+  - 面试题目：
+    - Mutex的底层实现原理
+    - 自旋锁vs阻塞锁的选择
+    - 饥饿模式的触发条件
+    - Mutex vs RWMutex的性能对比
+
 - **RWMutex**：读写锁的实现
+  - 数据结构：readerCount、readerWait、writerSem、readerSem
+  - 实现机制：写优先的读写锁
+  - 性能特点：读多写少场景的优势
+  - 面试题目：
+    - RWMutex的底层实现原理
+    - 读写锁的公平性设计
+    - 写饥饿问题的解决方案
+    - 何时使用RWMutex vs Mutex
+
 - **WaitGroup**：等待组的实现
+  - 数据结构：state字段（计数器+waiter数量）
+  - 实现机制：原子操作+信号量
+  - 使用场景：等待多个goroutine完成
+  - 面试题目：
+    - WaitGroup的底层实现原理
+    - Add()和Done()的调用顺序
+    - WaitGroup的复用问题
+    - WaitGroup vs Channel的选择
+
 - **Cond**：条件变量的使用
+  - 数据结构：L字段（关联的锁）
+  - 实现机制：信号量+等待队列
+  - 使用场景：生产者-消费者模式
+  - 面试题目：
+    - Cond的底层实现原理
+    - Wait()、Signal()、Broadcast()的区别
+    - 虚假唤醒的处理
+    - Cond vs Channel的选择
+
+- **Once**：单次执行保证
+  - 数据结构：done字段（执行状态）
+  - 实现机制：双重检查锁定模式
+  - 使用场景：单例模式、初始化
+  - 面试题目：
+    - Once的底层实现原理
+    - 双重检查锁定的优势
+    - Once的panic处理机制
+    - Once vs sync.OnceFunc的选择
+
+- **Pool**：对象池
+  - 数据结构：local数组+victim缓存
+  - 实现机制：无锁设计+GC协作
+  - 使用场景：减少GC压力、复用对象
+  - 面试题目：
+    - Pool的底层实现原理
+    - local和victim的设计思想
+    - Pool的GC协作机制
+    - Pool vs 手动对象池的对比
+
+- **Map**：并发安全的map
+  - 数据结构：read+dirty双map设计
+  - 实现机制：读写分离+延迟删除
+  - 性能特点：读多写少场景优化
+  - 面试题目：
+    - sync.Map的底层实现原理
+    - read和dirty的设计思想
+    - 延迟删除的实现机制
+    - sync.Map vs map+mutex的对比
+
+- **原子操作**：atomic包
+  - 基础操作：Add、Load、Store、CompareAndSwap
+  - 高级操作：Value类型、指针操作
+  - 内存模型：内存序、可见性保证
+  - 面试题目：
+    - 原子操作的底层实现
+    - CompareAndSwap的应用场景
+    - atomic.Value的使用限制
+    - 原子操作vs锁的性能对比
+
+### 1.6 锁使用情况分析
+- **使用互斥锁的组件**：
+  - **sync.Mutex**：本身就是锁，保护共享资源
+  - **sync.RWMutex**：内部包含写锁，支持读写分离
+  - **sync.Once**：内部包含Mutex，保护函数执行过程
+  - **sync.Map**：使用Mutex保护dirty字段
+  - **sync.Cond**：需要外部Mutex，保护条件检查
+  - **context.cancelCtx**：使用Mutex保护内部状态
+  - **Channel (hchan)**：使用mutex保护所有操作
+
+- **不使用互斥锁的组件**：
+  - **sync.WaitGroup**：使用原子操作管理计数器
+  - **sync.Pool**：通过P绑定避免锁竞争
+  - **原子操作 (atomic)**：直接使用CPU原子指令
+
+- **设计思想对比**：
+  - **使用锁**：复杂状态管理、goroutine调度、条件同步、资源保护
+  - **不使用锁**：简单状态、无竞争设计、硬件原子性、性能优先
+
 - **面试题目**：
-  - 锁的实现原理
-  - 死锁的预防和检测
-  - 读写锁的应用场景
+  - 为什么Once需要锁而不是只用原子操作
+  - Pool的无锁设计原理
+  - WaitGroup为什么可以用原子操作
+  - 锁vs无锁方案的选择策略
+  - 性能对比和适用场景分析
 
 ## 2. 内存管理
 
