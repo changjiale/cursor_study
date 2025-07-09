@@ -101,6 +101,13 @@ func threeSum1(nums []int) [][]int {
 	var result [][]int
 
 	// 遍历数组
+	/**
+	我们需要找三个数：nums[i] + nums[left] + nums[right] = 0
+	i 是第一个数
+	left 和 right 是另外两个数
+	如果 i 遍历到 n-1，那么 left 和 right 就没有位置了
+	所以 i 最多只能到 n-3，即 i < n-2
+		**/
 	for i := 0; i < n-2; i++ {
 		// 跳过重复元素
 		if i > 0 && nums[i] == nums[i-1] {
