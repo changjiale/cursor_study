@@ -50,3 +50,37 @@ func isPalindrome(s string, left, right int) bool {
 }
 
 //中心扩散
+/**
+1. 遍历字符串，以每个字符为中心，向两边扩散
+2. 如果左右两边字符相同，则继续扩散
+3. 如果左右两边字符不同，则停止扩散
+4. 记录最长回文子串
+5. 返回最长回文子串
+*/
+func longestPalindrome2(s string) string {
+	if len(s) < 2 {
+		return s
+	}
+	start, end := 0, 0
+	for i := 0; i < len(s); i++ {
+		//判断回文串
+		//基数回文
+		len1 := expandAroundCenter(s, i, i)
+		len2 := expandAroundCenter(s, i, i+1)
+		maxLen := max(len1, len2)
+		if maxLen > end-start+1 {
+			start = i - (maxLen-1)/2
+			end = i + maxLen/2
+		}
+	}
+	return s[start : end+1]
+}
+
+func expandAroundCenter(s string, left, right int) int {
+	for left >= 0 && right <= len(s) && s[left] == s[right] {
+		left--
+		right++
+	}
+
+	return right - left - 1
+}

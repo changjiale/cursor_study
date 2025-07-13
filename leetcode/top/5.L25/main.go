@@ -47,5 +47,44 @@ type ListNode struct {
 }
 
 func reverseKGroup(head *ListNode, k int) *ListNode {
-	return nil
+	dummy := &ListNode{0, head}
+	prev := dummy
+
+	for head != nil {
+		tail := prev
+		//找到当前组的尾节点
+		for i := 0; i < k; i++ {
+			tail = tail.Next
+			if tail == nil {
+				return dummy.Next
+			}
+		}
+
+		//下一组头结点
+		next := tail.Next
+		//翻转当前链表
+		head, tail = reverse(head, tail)
+		//翻转后从新赋值
+		prev.Next = head
+		tail.Next = next
+		prev = tail 
+		head = next
+		
+	}
+	return dummy.Next
+
+}
+
+func reverse(head, tail *ListNode) (*ListNode, *ListNode) {
+	prev := tail.Next
+	curr := head
+
+	for prev != tail {
+		next := curr.Next
+		curr.Next = prev
+		prev = curr
+		curr = next
+	}
+
+	return tail, head
 }
