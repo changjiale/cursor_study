@@ -15,6 +15,12 @@ func main() {
 
 }
 
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
 // 解法一：递归（推荐）
 // 核心思想：递归实现中序遍历，先遍历左子树，再访问根节点，最后遍历右子树
 // 时间复杂度：O(n)
