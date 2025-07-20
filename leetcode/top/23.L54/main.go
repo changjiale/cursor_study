@@ -33,8 +33,9 @@ func spiralOrder(matrix [][]int) []int {
 		if nextRow < 0 || nextRow >= rows || nextColumn < 0 || nextColumn >= columns || visited[nextRow][nextRow] {
 			directionIndex = (directionIndex + 1) % 4
 		}
-		row = nextRow
-		column = nextColumn
+		row += directions[directionIndex][0]
+		column += directions[directionIndex][1]
+
 	}
 
 	return order
