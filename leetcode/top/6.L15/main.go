@@ -63,11 +63,10 @@ func threeSum(nums []int) [][]int {
 			sum := nums[i] + nums[left] + nums[right]
 			if sum == 0 {
 				result = append(result, []int{nums[i], nums[left], nums[right]})
-				// 跳过重复元素
-				for left < right && nums[left] == nums[left+1] {
+				if left < right && nums[i] == nums[left+1] {
 					left++
 				}
-				for left < right && nums[right] == nums[right-1] {
+				if left < right && nums[i] == nums[right-1] {
 					right--
 				}
 				left++

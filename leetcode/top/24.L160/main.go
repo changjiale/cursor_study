@@ -47,27 +47,42 @@ skipB - 在 listB 中（从头节点开始）跳到交叉节点的节点数
 func main() {
 
 }
-
 type ListNode struct {
-	Val  int
+	Val int
 	Next *ListNode
 }
 
-func diff(node1 *ListNode, node2 *ListNode) *ListNode {
-	node1Ptr, node2Ptr := node1, node2
-	for node1Ptr != node2Ptr {
-		if node1Ptr == nil {
-			node1Ptr = node2
+
+// 解法一：双指针法（推荐）
+// 核心思想：让两个指针分别遍历两个链表，当到达末尾时交换到另一个链表的头部
+// 这样两个指针走过的距离相等，如果有交点，必定会在交点相遇
+// 时间复杂度：O(m+n)
+// 空间复杂度：O(1)
+func getIntersectionNode(headA, headB *ListNode) *ListNode {
+	if headA == nil || headB == nil {
+		return nil
+	}
+
+	// 两个指针分别指向两个链表的头部
+	ptrA, ptrB := headA, headB
+
+	// 当两个指针不相等时继续遍历
+	for ptrA != ptrB {
+		// 如果ptrA到达末尾，则指向headB
+		if ptrA == nil {
+			ptrA = headB
 		} else {
-			node1Ptr = node1Ptr.Next
+			ptrA = ptrA.Next
 		}
 
-		if node2Ptr == nil {
-			node2Ptr = node1
+		// 如果ptrB到达末尾，则指向headA
+		if ptrB == nil {
+			ptrB = headA
 		} else {
-			node2Ptr = node2Ptr.Next
+			ptrB = ptrB.Next
 		}
 	}
 
-	return node1Ptr
+	// 返回交点（如果不相交，最终都是nil）
+	return ptrA
 }
