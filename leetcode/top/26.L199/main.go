@@ -40,6 +40,12 @@ func main() {
 
 }
 
+type TreeNode struct {
+	Val int
+	Left *TreeNode
+	Right *TreeNode
+}
+
 // 解法一：BFS（层次遍历）
 // 核心思想：使用层次遍历，记录每一层的最后一个节点
 // 时间复杂度：O(n)

@@ -34,28 +34,34 @@ func main() {
 }
 
 type ListNode struct {
-	Value int
-	Next  *ListNode
+	Val  int
+	Next *ListNode
 }
 
-func merge(node1 *ListNode, node2 *ListNode) *ListNode {
-	summy := &ListNode{}
-	head := summy
-	for node1 != nil && node2 != nil {
-		if node1.Value <= node2.Value {
-			summy.Next = &ListNode{Value: node1.Value}
-			node1 = node1.Next
+func mergeTwoLists1(l1 *ListNode, l2 *ListNode) *ListNode {
+	// 创建虚拟头节点
+	dummy := &ListNode{}
+	current := dummy
+
+	// 比较两个链表的节点值，选择较小的节点
+	for l1 != nil && l2 != nil {
+		if l1.Val <= l2.Val {
+			current.Next = &ListNode{Val: l1.Val}
+			l1 = l1.Next
 		} else {
-			summy.Next = &ListNode{Value: node2.Value}
-			node2 = node2.Next
+			current.Next = &ListNode{Val: l2.Val}
+			l2 = l2.Next
 		}
-	}
-	if node1 != nil {
-		summy.Next = node1
-	}
-	if node2 != nil {
-		summy.Next = node2
+		current = current.Next
 	}
 
-	return head.Next
+	// 处理剩余的节点
+	if l1 != nil {
+		current.Next = l1
+	}
+	if l2 != nil {
+		current.Next = l2
+	}
+
+	return dummy.Next
 }

@@ -47,3 +47,27 @@ skipB - 在 listB 中（从头节点开始）跳到交叉节点的节点数
 func main() {
 
 }
+
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+func diff(node1 *ListNode, node2 *ListNode) *ListNode {
+	node1Ptr, node2Ptr := node1, node2
+	for node1Ptr != node2Ptr {
+		if node1Ptr == nil {
+			node1Ptr = node2
+		} else {
+			node1Ptr = node1Ptr.Next
+		}
+
+		if node2Ptr == nil {
+			node2Ptr = node1
+		} else {
+			node2Ptr = node2Ptr.Next
+		}
+	}
+
+	return node1Ptr
+}

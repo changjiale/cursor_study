@@ -1,4 +1,5 @@
-# Channel 详解
+
+、# Channel 详解
 
 ## 1. 基础概念
 

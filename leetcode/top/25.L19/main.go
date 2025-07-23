@@ -29,6 +29,11 @@ func main() {
 
 }
 
+type ListNode struct {
+	Val int
+	Next *ListNode
+}	
+
 // 解法一：双指针法（推荐）
 // 核心思想：使用快慢指针，快指针先走n步，然后快慢指针同时前进
 // 当快指针到达末尾时，慢指针指向要删除节点的前一个节点

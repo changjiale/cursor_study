@@ -37,35 +37,6 @@ func main() {
 
 }
 
-func isValid2(s string) bool {
-	stack := []rune{}
-	brackmap := map[rune]rune{
-		')': '(',
-		'}': '{',
-		']': '[',
-	}
-	for _, char := range s {
-		if char == '(' || char == '{' || char == '[' {
-			stack = append(stack, char)
-		} else {
-			if len(stack) == 0 {
-				return false
-			}
-
-			//看下栈顶
-			top := stack[len(stack)-1]
-			if top != brackmap[char] {
-				return false
-			}
-
-			//弹
-			stack = stack[:len(stack)-1]
-		}
-
-	}
-	return len(stack) == 0
-
-}
 
 func isValid(s string) bool {
 	// 使用切片模拟栈
